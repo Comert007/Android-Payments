@@ -1,5 +1,9 @@
 package com.yw.android.qqwalletpay.qqwallet;
 
+import android.content.Context;
+
+import com.tencent.mobileqq.openpay.api.IOpenApi;
+import com.tencent.mobileqq.openpay.api.OpenApiFactory;
 import com.tencent.mobileqq.openpay.data.pay.PayApi;
 
 /**
@@ -8,8 +12,7 @@ import com.tencent.mobileqq.openpay.data.pay.PayApi;
  */
 
 public class QQWalletPay {
-
-
+    private static final String TAG = QQWalletPay.class.getSimpleName();
     /**
      *  PayApi api = new PayApi();
      api.appId = APP_ID; // 在http://open.qq.com注册的AppId,参与支付签名，签名关键字key为appId
@@ -25,9 +28,29 @@ public class QQWalletPay {
      api.sigType = "HMAC-SHA1"; // 签名时，使用的加密方式，默认为"HMAC-SHA1"
      */
 
+    private Context context;
+    private String appId;
+    private String serialNumber;
+    private String callbackScheme;
+    private String tokenId;
+    private String pubAcc;
+    private String pubAccHint;
+    private String nonce;
+    private String timeStamp;
+    private String bargainorId;
+    private String sig;
+    private String sigType="HMAC-SHA1";
+
+    private IOpenApi openApi;
+
+    public void requestPay(){
+        openApi = OpenApiFactory.getInstance(context,null);
+    }
+
 
     public static class Builder{
 
+        private Context context;
         private String appId;
         private String serialNumber;
         private String callbackScheme;
@@ -39,6 +62,11 @@ public class QQWalletPay {
         private String bargainorId;
         private String sig;
         private String sigType="HMAC-SHA1";
+
+        public Builder setContext(Context context) {
+            this.context = context;
+            return this;
+        }
 
         public Builder setAppId(String appId) {
             this.appId = appId;
@@ -96,20 +124,6 @@ public class QQWalletPay {
         }
 
 
-        /**
-         * private String appId;
-         private String serialNumber;
-         private String callbackScheme;
-         private String tokenId;
-         private String pubAcc;
-         private String pubAccHint;
-         private String nonce;
-         private String timeStamp;
-         private String bargainorId;
-         private String sig;
-         private String sigType="HMAC-SHA1";
-         * @return
-         */
         public PayApi create(){
             PayApi api = new PayApi();
             api.serialNumber = this.serialNumber;
