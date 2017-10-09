@@ -16,6 +16,19 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+
+        <activity
+            android:name="com.yw.android.qqwalletpay.qqwallet.WeChatCallbackActivity"
+            android:launchMode="singleTop"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="qwallet100619284"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
