@@ -1,5 +1,6 @@
 package com.yw.android.qqwalletpay.qqwallet;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +27,14 @@ public class WeChatCallbackActivity extends AppCompatActivity implements IOpenAp
 
         openApi = OpenApiFactory.getInstance(this, "app id");
         openApi.handleIntent(getIntent(), this);
+    }
+
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        openApi.handleIntent(intent, this);
     }
 
     @Override
