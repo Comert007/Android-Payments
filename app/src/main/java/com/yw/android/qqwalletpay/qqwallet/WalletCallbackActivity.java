@@ -16,7 +16,7 @@ import com.yw.android.qqwalletpay.R;
  * Created by feng on 2017/10/9.
  */
 
-public class WeChatCallbackActivity extends AppCompatActivity implements IOpenApiListener{
+public class WalletCallbackActivity extends AppCompatActivity implements IOpenApiListener{
 
     private IOpenApi openApi;
 
