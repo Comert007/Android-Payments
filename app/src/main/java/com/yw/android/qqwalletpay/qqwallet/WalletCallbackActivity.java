@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.tencent.mobileqq.openpay.api.IOpenApi;
 import com.tencent.mobileqq.openpay.api.IOpenApiListener;
@@ -54,6 +55,8 @@ public class WalletCallbackActivity extends AppCompatActivity implements IOpenAp
                         + " retCode:" + payResponse.retCode
                         + " retMsg:" + payResponse.retMsg
                         + " transactionId:" + payResponse.transactionId;
+
+                Log.d("tag","message:"+message);
                 if (payResponse.isSuccess()) {
                     // 支付成功，这个支付结果不能作为发货的依据
                 }
